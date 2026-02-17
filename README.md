@@ -20,6 +20,7 @@
 * [Howto](#howto)
 * [Extension](#extension)
 * [Link](#link)
+* [Related Projects](#related-projects)
 
 
 
@@ -77,3 +78,16 @@ bash -c "$(wget -q https://raw.githubusercontent.com/samwhelp/make-voidlinux-loo
 | ------------------------------- | ----------------------------- |
 | [gnome-shell-layout-wincity.sh](https://github.com/samwhelp/anduinos-gnome-shell-adjustment/blob/main/demo/scripts/layout/gnome-shell-layout-wincity/gnome-shell-layout-wincity.sh) | [gnome-shell-layout-wincity.sh](https://github.com/samwhelp/voidlinux-gnome-shell-adjustment/blob/main/demo/scripts/layout/gnome-shell-layout-wincity/gnome-shell-layout-wincity.sh) |
 | [gnome-shell-layout-wincity](https://github.com/samwhelp/anduinos-gnome-shell-adjustment/tree/main/project/gnome-shell-layout/gnome-shell-layout-advance-full/profile/gnome-shell-layout-wincity) | [gnome-shell-layout-wincity](https://github.com/samwhelp/voidlinux-gnome-shell-adjustment/tree/main/project/gnome-shell-layout/gnome-shell-layout-advance-full/profile/gnome-shell-layout-wincity) |
+
+
+
+
+## Related Projects
+
+| Link | GitHub |
+| ---- | ------ |
+| [make-ubuntu-look-like-anduinos](https://samwhelp.github.io/make-ubuntu-look-like-anduinos/) | [GitHub](https://github.com/samwhelp/make-ubuntu-look-like-anduinos) |
+| [make-debian-look-like-anduinos](https://samwhelp.github.io/make-debian-look-like-anduinos/) | [GitHub](https://github.com/samwhelp/make-debian-look-like-anduinos) |
+| [make-fedora-look-like-anduinos](https://samwhelp.github.io/make-fedora-look-like-anduinos/) | [GitHub](https://github.com/samwhelp/make-fedora-look-like-anduinos) |
+| [make-archlinux-look-like-anduinos](https://samwhelp.github.io/make-archlinux-look-like-anduinos/) | [GitHub](https://github.com/samwhelp/make-archlinux-look-like-anduinos) |
+| [make-voidlinux-look-like-anduinos](https://samwhelp.github.io/make-voidlinux-look-like-anduinos/) | [GitHub](https://github.com/samwhelp/make-voidlinux-look-like-anduinos) |
