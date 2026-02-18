@@ -14,6 +14,9 @@
 * [Keybind](https://github.com/samwhelp/make-voidlinux-look-like-anduinos/blob/main/keybind.md)
 * [Howto](#howto)
 * [Extension](#extension)
+* [Theme](#theme)
+* [Wallpaper](#wallpaper)
+* [Logo](#logo)
 * [Link](#link)
 * [Related Projects](#related-projects)
 
@@ -63,6 +66,49 @@ bash -c "$(wget -q https://raw.githubusercontent.com/samwhelp/make-voidlinux-loo
 | [arcmenu@arcmenu.com](https://extensions.gnome.org/extension/3628/arcmenu/) | [Source](https://gitlab.com/arcmenu/ArcMenu) |
 | [blur-my-shell@aunetx](https://extensions.gnome.org/extension/3193/blur-my-shell/) | [Source](https://github.com/aunetx/blur-my-shell) |
 | [date-menu-formatter@marcinjakubowski.github.com](https://extensions.gnome.org/extension/4655/date-menu-formatter/) | [Source](https://github.com/marcinjakubowski/date-menu-formatter) |
+
+
+
+
+## Theme
+
+Search: [fluent](https://github.com/vinceliuice?tab=repositories&q=fluent&type=&language=&sort=)
+
+| Theme |
+| ----- |
+| [fluent-gtk-theme](https://github.com/vinceliuice/Fluent-gtk-theme) |
+| [fluent-icon-theme](https://github.com/vinceliuice/Fluent-icon-theme) |
+| [fluent-cursor-theme](https://github.com/vinceliuice/Fluent-icon-theme/tree/master/cursors) |
+
+
+
+
+## Wallpaper
+
+| Wallpaper | Soft Link |
+| --------- | --------- |
+| [/usr/share/backgrounds/Fluent-building-light.png](https://github.com/Anduin2017/AnduinOS/blob/1.5/src/mods/23-wallpaper-mod/Fluent-building-light.png) |  |
+| [/usr/share/backgrounds/Fluent-building-night.png](https://github.com/Anduin2017/AnduinOS/blob/1.5/src/mods/23-wallpaper-mod/Fluent-building-night.png) |  |
+| `/usr/share/backgrounds/next.png` | `/usr/share/backgrounds/Fluent-building-night.png` |
+| `/usr/share/backgrounds/default.png` | `/usr/share/backgrounds/next.png` |
+| `/usr/share/backgrounds/default-login.png` | `/usr/share/backgrounds/next.png` |
+| `/usr/share/backgrounds/default-grub.png` | `/usr/share/backgrounds/next.png` |
+
+
+
+
+## Logo
+
+| Logo |
+| ---- |
+| [/usr/share/images/anduinos/logo.svg](https://github.com/Anduin2017/AnduinOS/blob/1.5/src/mods/30-gnome-extension-arcmenu-patch/logo.svg) |
+
+
+> This for ArcMenu Button Icon
+
+``` sh
+dconf write /org/gnome/shell/extensions/arcmenu/menu-button-icon "'/usr/share/images/anduinos/logo.svg'"
+```
 
 
 
