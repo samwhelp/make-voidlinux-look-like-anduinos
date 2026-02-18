@@ -141,3 +141,12 @@ dconf write /org/gnome/shell/extensions/arcmenu/menu-button-icon "'/usr/share/im
 | [make-fedora-look-like-anduinos](https://samwhelp.github.io/make-fedora-look-like-anduinos/) | [GitHub](https://github.com/samwhelp/make-fedora-look-like-anduinos) |
 | [make-archlinux-look-like-anduinos](https://samwhelp.github.io/make-archlinux-look-like-anduinos/) | [GitHub](https://github.com/samwhelp/make-archlinux-look-like-anduinos) |
 | [make-voidlinux-look-like-anduinos](https://samwhelp.github.io/make-voidlinux-look-like-anduinos/) | [GitHub](https://github.com/samwhelp/make-voidlinux-look-like-anduinos) |
+
+
+
+
+| Link | GitHub |
+| ---- | ------ |
+| [demo-for-anduinos-discussion](https://samwhelp.github.io/demo-for-anduinos-discussion/) | [GitHub](https://github.com/samwhelp/demo-for-anduinos-discussion) |
+| [anduinos-gnome-shell-adjustment](https://samwhelp.github.io/anduinos-gnome-shell-adjustment/) | [GitHub](https://github.com/samwhelp/anduinos-gnome-shell-adjustment) |
+| [gnome-shell-enhance](https://samwhelp.github.io/gnome-shell-enhance/) | [GitHub](https://github.com/samwhelp/gnome-shell-enhance) |
