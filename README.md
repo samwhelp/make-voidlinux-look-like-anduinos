@@ -71,6 +71,10 @@ bash -c "$(wget -q https://raw.githubusercontent.com/samwhelp/make-voidlinux-loo
 | [arcmenu@arcmenu.com](https://extensions.gnome.org/extension/3628/arcmenu/) | [Source](https://gitlab.com/arcmenu/ArcMenu) |
 | [blur-my-shell@aunetx](https://extensions.gnome.org/extension/3193/blur-my-shell/) | [Source](https://github.com/aunetx/blur-my-shell) |
 | [date-menu-formatter@marcinjakubowski.github.com](https://extensions.gnome.org/extension/4655/date-menu-formatter/) | [Source](https://github.com/marcinjakubowski/date-menu-formatter) |
+| [user-theme@gnome-shell-extensions.gcampax.github.com](https://extensions.gnome.org/extension/19/user-themes/) | [Source](https://gitlab.gnome.org/GNOME/gnome-shell-extensions/-/tree/main/extensions/user-theme) |
+| [status-icons@gnome-shell-extensions.gcampax.github.com](https://extensions.gnome.org/extension/7332/status-icons/) | [Source](https://gitlab.gnome.org/GNOME/gnome-shell-extensions/-/tree/main/extensions/status-icons) |
+| [ding@rastersoft.com](https://extensions.gnome.org/extension/2087/desktop-icons-ng-ding/) | [Source](https://gitlab.com/rastersoft/desktop-icons-ng) |
+| [gtk4-ding@smedius.gitlab.com](https://extensions.gnome.org/extension/5263/gtk4-desktop-icons-ng-ding/) | [Source](https://gitlab.com/smedius/desktop-icons-ng) |
 
 
 
