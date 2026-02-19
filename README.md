@@ -16,6 +16,7 @@
 
 ## Subject
 
+* [Requirement](https://github.com/samwhelp/make-voidlinux-look-like-anduinos/blob/main/requirement.md)
 * [Keybind](https://github.com/samwhelp/make-voidlinux-look-like-anduinos/blob/main/keybind.md)
 * [Howto](#howto)
 * [Extension](#extension)
