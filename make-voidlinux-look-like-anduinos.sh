@@ -379,57 +379,6 @@ mod_style_install () {
 
 
 ##
-## ## Model / Logo
-##
-
-sys_logo_install () {
-
-	sys_logo_asset_install_for_anduinos
-
-	sys_logo_config_install_for_anduinos
-
-	return 0
-}
-
-
-
-
-##
-## ## Model / Logo / Install
-##
-
-sys_logo_config_install_for_anduinos () {
-
-	## config via dconf write
-	dconf write /org/gnome/shell/extensions/arcmenu/menu-button-icon "'/usr/share/images/anduinos/logo.svg'"
-
-}
-
-sys_logo_asset_install_for_anduinos () {
-
-	if [ -e "/usr/share/images/anduinos/logo.svg" ]; then
-		return 0
-	fi
-
-
-	echo
-	echo sudo mkdir -p "/usr/share/images/anduinos"
-	echo
-	sudo mkdir -p "/usr/share/images/anduinos"
-
-
-	echo
-	echo sudo wget -c "https://raw.githubusercontent.com/Anduin2017/AnduinOS/47ef341b4ab9119905e3abcfd1949d718698ac14/src/mods/30-gnome-extension-arcmenu-patch/logo.svg" -O "/usr/share/images/anduinos/logo.svg"
-	echo
-	sudo wget -c "https://raw.githubusercontent.com/Anduin2017/AnduinOS/47ef341b4ab9119905e3abcfd1949d718698ac14/src/mods/30-gnome-extension-arcmenu-patch/logo.svg" -O "/usr/share/images/anduinos/logo.svg"
-
-
-}
-
-
-
-
-##
 ##
 ################################################################################
 ##
@@ -1016,6 +965,66 @@ sys_theme_install_colloid_icon_theme_via_wget_archive () {
 	./install.sh
 
 	cd "${OLDPWD}"
+
+}
+
+
+
+
+##
+##
+################################################################################
+##
+##
+
+
+
+
+##
+## ## Model / Logo
+##
+
+sys_logo_install () {
+
+	sys_logo_asset_install_for_anduinos
+
+	sys_logo_config_install_for_anduinos
+
+	return 0
+}
+
+
+
+
+##
+## ## Model / Logo / Install
+##
+
+sys_logo_config_install_for_anduinos () {
+
+	## config via dconf write
+	dconf write /org/gnome/shell/extensions/arcmenu/menu-button-icon "'/usr/share/images/anduinos/logo.svg'"
+
+}
+
+sys_logo_asset_install_for_anduinos () {
+
+	if [ -e "/usr/share/images/anduinos/logo.svg" ]; then
+		return 0
+	fi
+
+
+	echo
+	echo sudo mkdir -p "/usr/share/images/anduinos"
+	echo
+	sudo mkdir -p "/usr/share/images/anduinos"
+
+
+	echo
+	echo sudo wget -c "https://raw.githubusercontent.com/Anduin2017/AnduinOS/47ef341b4ab9119905e3abcfd1949d718698ac14/src/mods/30-gnome-extension-arcmenu-patch/logo.svg" -O "/usr/share/images/anduinos/logo.svg"
+	echo
+	sudo wget -c "https://raw.githubusercontent.com/Anduin2017/AnduinOS/47ef341b4ab9119905e3abcfd1949d718698ac14/src/mods/30-gnome-extension-arcmenu-patch/logo.svg" -O "/usr/share/images/anduinos/logo.svg"
+
 
 }
 
