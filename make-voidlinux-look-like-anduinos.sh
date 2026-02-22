@@ -49,11 +49,26 @@ REF_GNOME_SHELL_EXTENSIONS_ENABLE=(
 
 
 REF_GNOME_SHELL_EXTENSIONS_DISABLE=(
+	"dash-to-dock@micxgx.gmail.com"
 	"apps-menu@gnome-shell-extensions.gcampax.github.com"
 	"places-menu@gnome-shell-extensions.gcampax.github.com"
 	"window-list@gnome-shell-extensions.gcampax.github.com"
-	"dash-to-dock@micxgx.gmail.com"
 )
+
+
+
+
+##
+## ## Args
+##
+
+
+DEFAULT_MASTER_DISTRO="voidlinux"
+REF_MASTER_DISTRO="${REF_MASTER_DISTRO:=$DEFAULT_MASTER_DISTRO}"
+
+
+DEFAULT_MASTER_STYLE="fluent"
+REF_MASTER_STYLE="${REF_MASTER_STYLE:=$DEFAULT_MASTER_STYLE}"
 
 
 
@@ -103,25 +118,86 @@ is_command_exist () {
 
 
 ##
-## ## Model
+## ## Portal / Prepare
 ##
 
+portal_gnome_shell_prepare_install () {
+
+	echo
+	echo
+	echo "##"
+	echo "## ## portal_gnome_shell_prepare_install"
+	echo "##"
+	echo
+	echo
+
+	mod_package_install
+
+	return 0
+}
+
 
 
 
 ##
-## ## Model / Package
+## ## Model / Package / Install
 ##
 
-mod_package_master_install () {
+mod_package_install () {
 
-	sys_package_install
+	local the_distro="${REF_MASTER_DISTRO}"
 
-	sys_package_remove
+	local the_delegate="sys_package_install_for_${the_distro}"
+
+
+	if ! is_function_exist "${the_delegate}"; then
+		return 0
+	fi
+
+
+	"${the_delegate}"
+
+
+	return 0
+}
+
+sys_package_install_for_ubuntu () {
+
+	echo
+	echo sudo apt-get install -y gnome-shell gnome-tweaks gnome-shell-extension-manager gir1.2-gmenu-3.0 git wget sassc
+	echo
+	sudo apt-get install -y gnome-shell gnome-tweaks gnome-shell-extension-manager gir1.2-gmenu-3.0 git wget sassc
 
 }
 
-sys_package_install () {
+sys_package_install_for_debian () {
+
+	echo
+	echo sudo apt-get install -y gnome-shell gnome-tweaks gnome-shell-extension-manager gir1.2-gmenu-3.0 git wget sassc
+	echo
+	sudo apt-get install -y gnome-shell gnome-tweaks gnome-shell-extension-manager gir1.2-gmenu-3.0 git wget sassc
+
+}
+
+sys_package_install_for_fedora () {
+
+	echo
+	echo sudo dnf install gnome-shell gnome-tweaks gnome-extensions-app gnome-menus git wget sassc
+	echo
+	sudo dnf install gnome-shell gnome-tweaks gnome-extensions-app gnome-menus git wget sassc
+
+}
+
+sys_package_install_for_archlinux () {
+
+	echo
+	echo sudo pacman -Sy --needed gnome-shell gnome-tweaks gnome-menus git wget sassc
+	echo
+	sudo pacman -Sy --needed gnome-shell gnome-tweaks gnome-menus git wget sassc
+
+}
+
+sys_package_install_for_voidlinux () {
 
 	echo
 	echo sudo xbps-install -Su gnome-shell gnome-tweaks gnome-menus git wget sassc
@@ -130,7 +206,66 @@ sys_package_install () {
 
 }
 
-sys_package_remove () {
+
+
+
+##
+##
+################################################################################
+##
+##
+
+
+
+
+##
+## ## Portal / Style
+##
+
+portal_gnome_shell_style_install () {
+
+	echo
+	echo
+	echo "##"
+	echo "## ## portal_gnome_shell_style_install"
+	echo "##"
+	echo
+	echo
+
+	mod_gnome_shell_style_install_prerun
+
+	mod_gnome_shell_style_install_mainrun
+
+	mod_gnome_shell_style_install_postrun
+
+
+	return 0
+}
+
+
+
+
+##
+## ## Model / Style
+##
+
+mod_gnome_shell_style_install_prerun () {
+
+	mod_style_install_prepare
+
+	return 0
+
+}
+
+mod_gnome_shell_style_install_mainrun () {
+
+	mod_style_install
+
+	return 0
+
+}
+
+mod_gnome_shell_style_install_postrun () {
 
 	return 0
 
@@ -140,14 +275,298 @@ sys_package_remove () {
 
 
 ##
-## ## Model / Theme
+## ## Model / Style / Prepare
 ##
 
-mod_theme_master_install () {
+mod_style_install_prepare () {
 
-	sys_theme_install_logo
+	local the_distro="${REF_MASTER_DISTRO}"
 
-	sys_theme_install_wallpaper
+	local the_delegate="mod_style_install_prepare_for_${the_distro}"
+
+
+	if ! is_function_exist "${the_delegate}"; then
+		return 0
+	fi
+
+
+	"${the_delegate}"
+
+
+	return 0
+}
+
+mod_style_install_prepare_for_ubuntu () {
+
+	echo
+	echo sudo apt-get install -y git wget sassc
+	echo
+	sudo apt-get install -y git wget sassc
+
+}
+
+mod_style_install_prepare_for_debian () {
+
+	echo
+	echo sudo apt-get install -y git wget sassc
+	echo
+	sudo apt-get install -y git wget sassc
+
+}
+
+mod_style_install_prepare_for_fedora () {
+
+	echo
+	echo sudo dnf install git wget sassc
+	echo
+	sudo dnf install git wget sassc
+
+}
+
+mod_style_install_prepare_for_archlinux () {
+
+	echo
+	echo sudo pacman -Sy --needed git wget sassc
+	echo
+	sudo pacman -Sy --needed git wget sassc
+
+}
+
+mod_style_install_prepare_for_voidlinux () {
+
+	echo
+	echo sudo xbps-install -Su git wget sassc
+	echo
+	sudo xbps-install -Su git wget sassc
+
+}
+
+
+
+
+##
+## ## Model / Style / Install
+##
+
+mod_style_install () {
+
+	local the_style="${REF_MASTER_STYLE}"
+
+	local the_delegate="sys_style_install_for_${the_style}"
+
+
+	if ! is_function_exist "${the_delegate}"; then
+		return 0
+	fi
+
+
+	"${the_delegate}"
+
+
+	return 0
+}
+
+
+
+
+##
+##
+################################################################################
+##
+##
+
+
+
+
+##
+## ## Model / Logo
+##
+
+sys_logo_install () {
+
+	sys_logo_install_for_anduinos
+
+	return 0
+}
+
+
+
+
+##
+## ## Model / Logo / Install
+##
+
+sys_logo_install_for_anduinos () {
+
+	if [ -e "/usr/share/images/anduinos/logo.svg" ]; then
+		return 0
+	fi
+
+
+	echo
+	echo sudo mkdir -p "/usr/share/images/anduinos"
+	echo
+	sudo mkdir -p "/usr/share/images/anduinos"
+
+
+	echo
+	echo sudo wget -c "https://raw.githubusercontent.com/Anduin2017/AnduinOS/47ef341b4ab9119905e3abcfd1949d718698ac14/src/mods/30-gnome-extension-arcmenu-patch/logo.svg" -O "/usr/share/images/anduinos/logo.svg"
+	echo
+	sudo wget -c "https://raw.githubusercontent.com/Anduin2017/AnduinOS/47ef341b4ab9119905e3abcfd1949d718698ac14/src/mods/30-gnome-extension-arcmenu-patch/logo.svg" -O "/usr/share/images/anduinos/logo.svg"
+
+
+}
+
+
+
+
+##
+##
+################################################################################
+##
+##
+
+
+
+
+##
+## ## Model / Wallpaper
+##
+
+sys_wallpaper_install () {
+
+	#sys_wallpaper_install_for_wincity
+
+	sys_wallpaper_install_for_maccity
+
+	return 0
+}
+
+
+
+
+##
+## ## Model / Wallpaper / wincity
+##
+
+sys_wallpaper_install_for_wincity () {
+
+
+	## config via dconf
+	dconf write /org/gnome/desktop/background/picture-uri "'/usr/share/backgrounds/default.png'"
+	dconf write /org/gnome/desktop/background/picture-uri-dark "'/usr/share/backgrounds/default.png'"
+	dconf write /org/gnome/desktop/screensaver/picture-uri "'/usr/share/backgrounds/default-login.png'"
+
+
+	if [ -e "/usr/share/backgrounds/Fluent-round-dark.png" ]; then
+		return 0
+	fi
+
+
+	echo
+	echo sudo mkdir -p "/usr/share/backgrounds"
+	echo
+	sudo mkdir -p "/usr/share/backgrounds"
+
+
+	cd "/usr/share/backgrounds"
+
+
+	echo
+	echo sudo wget -c "https://raw.githubusercontent.com/vinceliuice/Fluent-kde/refs/heads/main/wallpaper/Fluent-round-dark/contents/images/3840x2160.png" -O "./Fluent-round-dark.png"
+	echo
+	sudo wget -c "https://raw.githubusercontent.com/vinceliuice/Fluent-kde/refs/heads/main/wallpaper/Fluent-round-dark/contents/images/3840x2160.png" -O "./Fluent-round-dark.png"
+
+
+	echo
+	echo sudo wget -c "https://raw.githubusercontent.com/vinceliuice/MacTahoe-kde/refs/heads/main/wallpapers/MacTahoe-Light/contents/images/3840x2160.jpeg" -O "./Fluent-round-light.png"
+	echo
+	sudo wget -c "https://raw.githubusercontent.com/vinceliuice/Fluent-kde/refs/heads/main/wallpaper/Fluent-round-light/contents/images/3840x2160.png" -O "./Fluent-round-light.png"
+
+
+	sudo ln -sf Fluent-round-dark.png next.png
+	sudo ln -sf next.png default.png
+	sudo ln -sf next.png default-login.png
+	sudo ln -sf next.png default-grub.png
+
+
+	cd "${OLDPWD}"
+
+}
+
+
+
+
+##
+## ## Model / Wallpaper / maccity
+##
+
+sys_wallpaper_install_for_maccity () {
+
+
+	## config via dconf
+	dconf write /org/gnome/desktop/background/picture-uri "'/usr/share/backgrounds/default.jpeg'"
+	dconf write /org/gnome/desktop/background/picture-uri-dark "'/usr/share/backgrounds/default.jpeg'"
+	dconf write /org/gnome/desktop/screensaver/picture-uri "'/usr/share/backgrounds/default-login.jpeg'"
+
+
+	if [ -e "/usr/share/backgrounds/MacTahoe-Dark.jpeg" ]; then
+		return 0
+	fi
+
+
+	echo
+	echo sudo mkdir -p "/usr/share/backgrounds"
+	echo
+	sudo mkdir -p "/usr/share/backgrounds"
+
+
+	cd "/usr/share/backgrounds"
+
+
+	echo
+	echo sudo wget -c "https://raw.githubusercontent.com/vinceliuice/MacTahoe-kde/refs/heads/main/wallpapers/MacTahoe-Dark/contents/images/3840x2160.jpeg" -O "./MacTahoe-Dark.jpeg"
+	echo
+	sudo wget -c "https://raw.githubusercontent.com/vinceliuice/MacTahoe-kde/refs/heads/main/wallpapers/MacTahoe-Dark/contents/images/3840x2160.jpeg" -O "./MacTahoe-Dark.jpeg"
+
+
+	echo
+	echo sudo wget -c "https://raw.githubusercontent.com/vinceliuice/MacTahoe-kde/refs/heads/main/wallpapers/MacTahoe-Light/contents/images/3840x2160.jpeg" -O "./MacTahoe-Light.jpeg"
+	echo
+	sudo wget -c "https://raw.githubusercontent.com/vinceliuice/MacTahoe-kde/refs/heads/main/wallpapers/MacTahoe-Light/contents/images/3840x2160.jpeg" -O "./MacTahoe-Light.jpeg"
+
+
+	sudo ln -sf MacTahoe-Dark.jpeg next.jpeg
+	sudo ln -sf next.jpeg default.jpeg
+	sudo ln -sf next.jpeg default-login.jpeg
+	sudo ln -sf next.jpeg default-grub.jpeg
+
+
+	cd "${OLDPWD}"
+
+}
+
+
+
+
+##
+##
+################################################################################
+##
+##
+
+
+
+
+##
+## ## Model / Style / fluent
+##
+
+sys_style_install_for_fluent () {
+
+	sys_logo_install_for_anduinos
+
+	sys_wallpaper_install_for_wincity
 
 	sys_theme_install_fluent_gtk_theme
 
@@ -291,67 +710,165 @@ sys_theme_install_fluent_icon_theme_via_wget_archive () {
 
 }
 
-sys_theme_install_wallpaper () {
 
 
-	if [ -e "/usr/share/backgrounds/Fluent-building-night.png" ]; then
+
+##
+##
+################################################################################
+##
+##
+
+
+
+
+##
+## ## Model / Style / colloid
+##
+
+sys_style_install_for_colloid () {
+
+	sys_wallpaper_install_for_maccity
+
+	sys_theme_install_colloid_gtk_theme
+
+	sys_theme_install_colloid_icon_theme
+
+}
+
+sys_theme_install_colloid_gtk_theme () {
+
+	#sys_theme_install_colloid_gtk_theme_via_git_clone
+
+	sys_theme_install_colloid_gtk_theme_via_wget_archive
+
+}
+
+sys_theme_install_colloid_gtk_theme_via_git_clone () {
+
+
+	if [ -e "${HOME}/.themes/Colloid" ]; then
 		return 0
 	fi
 
 
-	echo
-	echo sudo mkdir -p "/usr/share/backgrounds"
-	echo
-	sudo mkdir -p "/usr/share/backgrounds"
+	git clone https://github.com/vinceliuice/Colloid-gtk-theme /tmp/colloid-gtk-theme
 
 
-	cd "/usr/share/backgrounds"
 
 
-	echo
-	echo sudo wget -c "https://raw.githubusercontent.com/Anduin2017/AnduinOS/refs/heads/1.5/src/mods/23-wallpaper-mod/Fluent-building-night.png" -O "./Fluent-building-night.png"
-	echo
-	sudo wget -c "https://raw.githubusercontent.com/Anduin2017/AnduinOS/refs/heads/1.5/src/mods/23-wallpaper-mod/Fluent-building-night.png" -O "./Fluent-building-night.png"
+	cd /tmp/colloid-gtk-theme
 
-
-	echo
-	echo sudo wget -c "https://raw.githubusercontent.com/Anduin2017/AnduinOS/refs/heads/1.5/src/mods/23-wallpaper-mod/Fluent-building-light.png" -O "./Fluent-building-light.png"
-	echo
-	sudo wget -c "https://raw.githubusercontent.com/Anduin2017/AnduinOS/refs/heads/1.5/src/mods/23-wallpaper-mod/Fluent-building-light.png" -O "./Fluent-building-light.png"
-
-
-	sudo ln -sf Fluent-building-night.png next.png
-
-	sudo ln -sf next.png default.png
-
-	sudo ln -sf next.png default-login.png
-
-	sudo ln -sf next.png default-grub.png
-
+	./install.sh --theme all
 
 	cd "${OLDPWD}"
 
 }
 
-sys_theme_install_logo () {
+sys_theme_install_colloid_gtk_theme_via_wget_archive () {
 
 
-	if [ -e "/usr/share/images/anduinos/logo.svg" ]; then
+	if [ -e "${HOME}/.themes/Colloid" ]; then
 		return 0
 	fi
 
 
-	echo
-	echo sudo mkdir -p "/usr/share/images/anduinos"
-	echo
-	sudo mkdir -p "/usr/share/images/anduinos"
+	wget -c 'https://github.com/vinceliuice/Colloid-gtk-theme/archive/refs/heads/main.tar.gz' -O '/tmp/Colloid-gtk-theme-main.tar.gz'
 
 
-	echo
-	echo sudo wget -c "https://raw.githubusercontent.com/Anduin2017/AnduinOS/47ef341b4ab9119905e3abcfd1949d718698ac14/src/mods/30-gnome-extension-arcmenu-patch/logo.svg" -O "/usr/share/images/anduinos/logo.svg"
-	echo
-	sudo wget -c "https://raw.githubusercontent.com/Anduin2017/AnduinOS/47ef341b4ab9119905e3abcfd1949d718698ac14/src/mods/30-gnome-extension-arcmenu-patch/logo.svg" -O "/usr/share/images/anduinos/logo.svg"
 
+
+	cd /tmp
+
+	tar xf Colloid-gtk-theme-main.tar.gz
+
+	cd "${OLDPWD}"
+
+
+
+
+	cd /tmp/Colloid-gtk-theme-main
+
+	./install.sh --theme all
+
+	cd "${OLDPWD}"
+
+}
+
+sys_theme_install_colloid_icon_theme () {
+
+	#sys_theme_install_colloid_icon_theme_via_git_clone
+
+	sys_theme_install_colloid_icon_theme_via_wget_archive
+
+}
+
+sys_theme_install_colloid_icon_theme_via_git_clone () {
+
+
+	if [ -e "${HOME}/.local/share/icons/Colloid" ]; then
+		return 0
+	fi
+
+
+	git clone https://github.com/vinceliuice/Colloid-icon-theme /tmp/colloid-icon-theme
+
+
+
+
+	cd /tmp/colloid-icon-theme
+
+	./install.sh --all
+
+	cd "${OLDPWD}"
+
+
+
+
+	cd /tmp/colloid-icon-theme/cursors
+
+	./install.sh
+
+	cd "${OLDPWD}"
+
+}
+
+sys_theme_install_colloid_icon_theme_via_wget_archive () {
+
+
+	if [ -e "${HOME}/.local/share/icons/Colloid" ]; then
+		return 0
+	fi
+
+
+	wget -c 'https://github.com/vinceliuice/Colloid-icon-theme/archive/refs/heads/main.tar.gz' -O '/tmp/Colloid-icon-theme-main.tar.gz'
+
+
+
+
+	cd /tmp
+
+	tar xf Colloid-icon-theme-main.tar.gz
+
+	cd "${OLDPWD}"
+
+
+
+
+	cd /tmp/Colloid-icon-theme-main
+
+	./install.sh --theme all
+
+	cd "${OLDPWD}"
+
+
+
+
+	cd /tmp/Colloid-icon-theme-main/cursors
+
+	./install.sh
+
+	cd "${OLDPWD}"
 
 }
 
@@ -359,7 +876,52 @@ sys_theme_install_logo () {
 
 
 ##
-## ## Model / Tool
+##
+################################################################################
+##
+##
+
+
+
+
+##
+## ## Portal / Tool
+##
+
+portal_tool_install () {
+
+	echo
+	echo
+	echo "##"
+	echo "## ## portal_tool_install"
+	echo "##"
+	echo
+	echo
+
+	mod_tool_package_install
+
+	mod_tool_config_install
+
+	return 0
+}
+
+
+
+
+##
+## ## Model / Tool / Package
+##
+
+mod_tool_package_install () {
+
+	return 0
+}
+
+
+
+
+##
+## ## Model / Tool / Config
 ##
 
 mod_tool_config_install () {
@@ -737,7 +1299,38 @@ __EOF__
 
 
 ##
-## ## Model / Gnome Shell / Main
+##
+################################################################################
+##
+##
+
+
+
+
+##
+## ## Portal / Master
+##
+
+portal_gnome_shell_master_install () {
+
+	echo
+	echo
+	echo "##"
+	echo "## ## portal_gnome_shell_master_install"
+	echo "##"
+	echo
+	echo
+
+	mod_gnome_shell_main_config_install
+
+	return 0
+}
+
+
+
+
+##
+## ## Model / Master / Gnome Shell
 ##
 
 mod_gnome_shell_main_config_install () {
@@ -890,12 +1483,12 @@ dconf load / << __EOF__
 
 [org/gnome/desktop/background]
 picture-options='zoom'
-picture-uri='file:///usr/share/backgrounds/default.png'
-picture-uri-dark='file:///usr/share/backgrounds/default.png'
+picture-uri='file:///usr/share/backgrounds/default.jpg'
+picture-uri-dark='file:///usr/share/backgrounds/default.jpg'
 
 
 [org/gnome/desktop/screensaver]
-picture-uri='file:///usr/share/backgrounds/default-login.png'
+picture-uri='file:///usr/share/backgrounds/default-login.jpg'
 
 
 __EOF__
@@ -906,7 +1499,38 @@ __EOF__
 
 
 ##
-## ## Model / Gnome Shell / Keybind
+##
+################################################################################
+##
+##
+
+
+
+
+##
+## ## Portal / Keybind
+##
+
+portal_gnome_shell_keybind_install () {
+
+	echo
+	echo
+	echo "##"
+	echo "## ## portal_gnome_shell_keybind_install"
+	echo "##"
+	echo
+	echo
+
+	mod_gnome_shell_keybind_config_install
+
+	return 0
+}
+
+
+
+
+##
+## ## Model / Keybind / Gnome Shell
 ##
 
 mod_gnome_shell_keybind_config_install () {
@@ -1148,46 +1772,6 @@ __EOF__
 
 
 ##
-## ## Portal
-##
-
-mod_gnome_shell_master_config_install_prepare () {
-
-	return 0
-
-}
-
-mod_gnome_shell_master_config_install_main () {
-
-	mod_gnome_shell_main_config_install
-
-	mod_gnome_shell_keybind_config_install
-
-	mod_tool_config_install
-
-}
-
-mod_gnome_shell_master_config_install_done () {
-
-	#sys_tips_on_done
-
-	return 0
-}
-
-mod_gnome_shell_master_config_install () {
-
-	mod_gnome_shell_master_config_install_prepare
-
-	mod_gnome_shell_master_config_install_main
-
-	mod_gnome_shell_master_config_install_done
-
-}
-
-
-
-
-##
 ##
 ################################################################################
 ##
@@ -1197,7 +1781,185 @@ mod_gnome_shell_master_config_install () {
 
 
 ##
-## ## Model / Extension
+## ## Portal / Layout
+##
+
+portal_gnome_shell_layout_install () {
+
+	echo
+	echo
+	echo "##"
+	echo "## ## portal_gnome_shell_layout_install"
+	echo "##"
+	echo
+	echo
+
+	mod_gnome_shell_layout_install_prerun
+
+	mod_gnome_shell_layout_install_mainrun
+
+	mod_gnome_shell_layout_install_postrun
+
+}
+
+
+
+
+##
+## ## Model / Layout
+##
+
+mod_gnome_shell_layout_install_prerun () {
+
+	mod_python_pipx_install
+
+	mod_gnome_shell_extensions_cli_install
+
+	return 0
+
+}
+
+mod_gnome_shell_layout_install_mainrun () {
+
+	sys_gnome_shell_extensions_install
+
+	sys_gnome_shell_extensions_enable
+
+	sys_gnome_shell_extensions_disable
+
+	sys_gnome_shell_extensions_config
+
+	return 0
+
+}
+
+mod_gnome_shell_layout_install_postrun () {
+
+	return 0
+
+}
+
+
+
+
+##
+## ## Model / Pipx
+##
+
+mod_python_pipx_install () {
+
+	if is_command_exist pipx; then
+
+		return
+
+	fi
+
+	sys_python_pipx_install
+
+}
+
+sys_python_pipx_install () {
+
+	local the_distro="${REF_MASTER_DISTRO}"
+
+	local the_delegate="sys_python_pipx_install_for_${the_distro}"
+
+
+	if ! is_function_exist "${the_delegate}"; then
+		return 0
+	fi
+
+
+	"${the_delegate}"
+
+
+	return 0
+}
+
+sys_python_pipx_install_for_ubuntu () {
+
+	echo
+	echo sudo apt-get install -y pipx
+	echo
+	sudo apt-get install -y pipx
+
+}
+
+sys_python_pipx_install_for_debian () {
+
+	echo
+	echo sudo apt-get install -y pipx
+	echo
+	sudo apt-get install -y pipx
+
+}
+
+sys_python_pipx_install_for_fedora () {
+
+	echo
+	echo sudo dnf install pipx
+	echo
+	sudo dnf install pipx
+
+}
+
+sys_python_pipx_install_for_archlinux () {
+
+	echo
+	echo sudo pacman -Sy --needed python-pipx
+	echo
+	sudo pacman -Sy --needed python-pipx
+
+}
+
+sys_python_pipx_install_for_voidlinux () {
+
+	echo
+	echo sudo xbps-install -Su python3-pipx
+	echo
+	sudo xbps-install -Su python3-pipx
+
+}
+
+
+
+
+##
+## ## Model / Gext
+##
+
+mod_gnome_shell_extensions_cli_install () {
+
+	if is_command_exist gext; then
+
+		return
+
+	fi
+
+	sys_gnome_shell_extensions_cli_install
+
+}
+
+sys_gnome_shell_extensions_cli_install () {
+
+	sys_gnome_shell_extensions_cli_install_via_pipx
+
+}
+
+sys_gnome_shell_extensions_cli_install_via_pipx () {
+
+	echo
+	echo sudo pipx install gnome-extensions-cli --global
+	echo
+	sudo pipx install gnome-extensions-cli --global
+
+}
+
+
+
+
+##
+## ## Model / Layout / Gnome Shell Extension
 ##
 
 sys_gnome_shell_extensions_install () {
@@ -1259,7 +2021,7 @@ sys_gnome_shell_extensions_disable () {
 
 
 ##
-## ## Model / Config
+## ## Model / Layout / Gnome Shell Extension / Config
 ##
 
 sys_gnome_shell_extensions_config () {
@@ -1363,7 +2125,6 @@ force-menu-location='Off'
 hide-overview-on-startup=false
 hotkey-open-primary-monitor=false
 #menu-button-icon='start-here'
-menu-button-icon='/usr/share/images/anduinos/logo.svg'
 menu-button-icon-size=32
 menu-button-padding=6
 menu-item-grid-icon-size='Default'
@@ -1410,99 +2171,24 @@ __EOF__
 
 
 ##
-## ## Model / Gext
 ##
-
-mod_gnome_shell_extensions_cli_install () {
-
-	if is_command_exist gext; then
-
-		return
-
-	fi
-
-	sys_gnome_shell_extensions_cli_install
-
-}
-
-sys_gnome_shell_extensions_cli_install () {
-
-	sys_gnome_shell_extensions_cli_install_via_pipx
-
-}
-
-sys_gnome_shell_extensions_cli_install_via_pipx () {
-
-	sudo pipx install gnome-extensions-cli --global
-
-}
+################################################################################
+##
+##
 
 
 
 
 ##
-## ## Model / Pipx
+## ## Portal / Tips
 ##
 
-mod_python_pipx_install () {
+portal_tips_on_done () {
 
-	if is_command_exist pipx; then
-
-		return
-
-	fi
-
-	sys_python_pipx_install
-
-}
-
-sys_python_pipx_install () {
-
-	#sys_python_pipx_install_for_ubuntu
-
-	#sys_python_pipx_install_for_debian
-
-	#sys_python_pipx_install_for_fedora
-
-	#sys_python_pipx_install_for_archlinux
-
-	sys_python_pipx_install_for_voidlinux
-
+	sys_tips_on_done
 
 	return 0
 }
-
-sys_python_pipx_install_for_ubuntu () {
-
-	sudo apt-get install -y pipx
-
-}
-
-sys_python_pipx_install_for_debian () {
-
-	sudo apt-get install -y pipx
-
-}
-
-sys_python_pipx_install_for_fedora () {
-
-	sudo dnf install pipx
-
-}
-
-sys_python_pipx_install_for_archlinux () {
-
-	sudo pacman -Sy --needed python-pipx
-
-}
-
-sys_python_pipx_install_for_voidlinux () {
-
-	sudo xbps-install -Su python3-pipx
-
-}
-
-
 
 
 ##
@@ -1528,6 +2214,8 @@ cat << __EOF__
 ## gnome-session-quit
 ## \`\`\`
 ##
+## or just 'Alt + Shfit + x' to Logout.
+##
 ## Please check.
 ##
 ## For Example:
@@ -1545,63 +2233,33 @@ __EOF__
 
 
 ##
+##
+################################################################################
+##
+##
+
+
+
+
+##
 ## ## Portal
 ##
 
-mod_gnome_shell_layout_install_prepare () {
+portal_gnome_shell_install () {
 
-	mod_python_pipx_install
+	portal_gnome_shell_prepare_install
 
-	mod_gnome_shell_extensions_cli_install
+	portal_gnome_shell_master_install
 
-}
+	portal_gnome_shell_keybind_install
 
-mod_gnome_shell_layout_install_main () {
+	portal_tool_install
 
-	sys_gnome_shell_extensions_install
+	portal_gnome_shell_layout_install
 
-	sys_gnome_shell_extensions_enable
+	portal_gnome_shell_style_install
 
-	sys_gnome_shell_extensions_disable
-
-	sys_gnome_shell_extensions_config
-
-}
-
-mod_gnome_shell_layout_install_done () {
-
-	#sys_tips_on_done
-
-	return 0
-}
-
-mod_gnome_shell_layout_install () {
-
-	mod_gnome_shell_layout_install_prepare
-
-	mod_gnome_shell_layout_install_main
-
-	mod_gnome_shell_layout_install_done
-
-}
-
-mod_gnome_shell_master_layout_install () {
-
-	mod_gnome_shell_layout_install
-
-}
-
-mod_gnome_shell_master_install () {
-
-	mod_package_master_install
-
-	mod_gnome_shell_master_config_install
-
-	mod_gnome_shell_master_layout_install
-
-	mod_theme_master_install
-
-	sys_tips_on_done
+	portal_tips_on_done
 
 }
 
@@ -1612,7 +2270,7 @@ mod_gnome_shell_master_install () {
 
 __main__ () {
 
-	mod_gnome_shell_master_install
+	portal_gnome_shell_install
 
 }
 
