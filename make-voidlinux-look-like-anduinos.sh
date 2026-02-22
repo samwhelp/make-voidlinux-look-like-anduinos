@@ -433,7 +433,7 @@ sys_logo_install_for_anduinos () {
 ## ## Model / Wallpaper
 ##
 
-sys_wallpaper_install () {
+sys_wallpaper_install_for_default () {
 
 	#sys_wallpaper_install_for_wincity
 
@@ -451,11 +451,47 @@ sys_wallpaper_install () {
 
 sys_wallpaper_install_for_wincity () {
 
+	sys_wallpaper_asset_install_for_wincity
 
-	## config via dconf
-	dconf write /org/gnome/desktop/background/picture-uri "'/usr/share/backgrounds/default.png'"
-	dconf write /org/gnome/desktop/background/picture-uri-dark "'/usr/share/backgrounds/default.png'"
-	dconf write /org/gnome/desktop/screensaver/picture-uri "'/usr/share/backgrounds/default-login.png'"
+	sys_wallpaper_config_install_for_wincity
+
+}
+
+sys_wallpaper_config_install_for_wincity () {
+
+
+	## config via gsettings set
+	#gsettings set org.gnome.desktop.background picture-uri "'/usr/share/backgrounds/default.jpeg'"
+	#gsettings set org.gnome.desktop.background picture-uri-dark "'/usr/share/backgrounds/default.jpeg'"
+	#gsettings set org.gnome.desktop.screensaver picture-uri "'/usr/share/backgrounds/default-login.jpeg'"
+
+
+	## config via dconf write
+	#dconf write /org/gnome/desktop/background/picture-uri "'/usr/share/backgrounds/default.jpeg'"
+	#dconf write /org/gnome/desktop/background/picture-uri-dark "'/usr/share/backgrounds/default.jpeg'"
+	#dconf write /org/gnome/desktop/screensaver/picture-uri "'/usr/share/backgrounds/default-login.jpeg'"
+
+
+	## config via dconf load
+
+dconf load / << __EOF__
+
+
+[org/gnome/desktop/background]
+picture-options='zoom'
+picture-uri='file:///usr/share/backgrounds/default.png'
+picture-uri-dark='file:///usr/share/backgrounds/default.png'
+
+
+[org/gnome/desktop/screensaver]
+picture-uri='file:///usr/share/backgrounds/default-login.png'
+
+
+__EOF__
+
+}
+
+sys_wallpaper_asset_install_for_wincity () {
 
 
 	if [ -e "/usr/share/backgrounds/Fluent-round-dark.png" ]; then
@@ -503,11 +539,47 @@ sys_wallpaper_install_for_wincity () {
 
 sys_wallpaper_install_for_maccity () {
 
+	sys_wallpaper_asset_install_for_maccity
 
-	## config via dconf
-	dconf write /org/gnome/desktop/background/picture-uri "'/usr/share/backgrounds/default.jpeg'"
-	dconf write /org/gnome/desktop/background/picture-uri-dark "'/usr/share/backgrounds/default.jpeg'"
-	dconf write /org/gnome/desktop/screensaver/picture-uri "'/usr/share/backgrounds/default-login.jpeg'"
+	sys_wallpaper_config_install_for_maccity
+
+}
+
+sys_wallpaper_config_install_for_maccity () {
+
+
+	## config via gsettings set
+	#gsettings set org.gnome.desktop.background picture-uri "'/usr/share/backgrounds/default.jpeg'"
+	#gsettings set org.gnome.desktop.background picture-uri-dark "'/usr/share/backgrounds/default.jpeg'"
+	#gsettings set org.gnome.desktop.screensaver picture-uri "'/usr/share/backgrounds/default-login.jpeg'"
+
+
+	## config via dconf write
+	#dconf write /org/gnome/desktop/background/picture-uri "'/usr/share/backgrounds/default.jpeg'"
+	#dconf write /org/gnome/desktop/background/picture-uri-dark "'/usr/share/backgrounds/default.jpeg'"
+	#dconf write /org/gnome/desktop/screensaver/picture-uri "'/usr/share/backgrounds/default-login.jpeg'"
+
+
+	## config via dconf load
+
+dconf load / << __EOF__
+
+
+[org/gnome/desktop/background]
+picture-options='zoom'
+picture-uri='file:///usr/share/backgrounds/default.jpeg'
+picture-uri-dark='file:///usr/share/backgrounds/default.jpeg'
+
+
+[org/gnome/desktop/screensaver]
+picture-uri='file:///usr/share/backgrounds/default-login.jpeg'
+
+
+__EOF__
+
+}
+
+sys_wallpaper_asset_install_for_maccity () {
 
 
 	if [ -e "/usr/share/backgrounds/MacTahoe-Dark.jpeg" ]; then
@@ -564,7 +636,40 @@ sys_wallpaper_install_for_maccity () {
 
 sys_style_install_for_fluent () {
 
-	sys_logo_install_for_anduinos
+	sys_style_asset_install_for_fluent
+
+	sys_style_config_install_for_fluent
+
+}
+
+sys_style_config_install_for_fluent () {
+
+dconf load / << __EOF__
+
+
+[org/gnome/desktop/interface]
+color-scheme='prefer-dark'
+gtk-theme='Fluent-round-Dark'
+icon-theme='Fluent-dark'
+cursor-theme='Fluent-dark-cursors'
+cursor-size=24
+
+
+[org/gnome/desktop/wm/preferences]
+theme='Fluent-round-Dark'
+
+
+[org/gnome/shell/extensions/user-theme]
+name='Fluent-round-Dark'
+
+
+__EOF__
+
+}
+
+sys_style_asset_install_for_fluent () {
+
+	sys_logo_install
 
 	sys_wallpaper_install_for_wincity
 
@@ -727,6 +832,39 @@ sys_theme_install_fluent_icon_theme_via_wget_archive () {
 ##
 
 sys_style_install_for_colloid () {
+
+	sys_style_asset_install_for_colloid
+
+	sys_style_config_install_for_colloid
+
+}
+
+sys_style_config_install_for_colloid () {
+
+dconf load / << __EOF__
+
+
+[org/gnome/desktop/interface]
+color-scheme='prefer-dark'
+gtk-theme='Colloid-Dark'
+icon-theme='Colloid-Dark'
+cursor-theme='Colloid-dark-cursors'
+cursor-size=24
+
+
+[org/gnome/desktop/wm/preferences]
+theme='Colloid-Dark'
+
+
+[org/gnome/shell/extensions/user-theme]
+name='Colloid-Dark'
+
+
+__EOF__
+
+}
+
+sys_style_asset_install_for_colloid () {
 
 	sys_wallpaper_install_for_maccity
 
