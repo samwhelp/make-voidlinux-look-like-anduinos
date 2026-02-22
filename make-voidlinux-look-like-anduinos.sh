@@ -384,7 +384,9 @@ mod_style_install () {
 
 sys_logo_install () {
 
-	sys_logo_install_for_anduinos
+	sys_logo_asset_install_for_anduinos
+
+	sys_logo_config_install_for_anduinos
 
 	return 0
 }
@@ -396,7 +398,14 @@ sys_logo_install () {
 ## ## Model / Logo / Install
 ##
 
-sys_logo_install_for_anduinos () {
+sys_logo_config_install_for_anduinos () {
+
+	## config via dconf write
+	dconf write /org/gnome/shell/extensions/arcmenu/menu-button-icon "'/usr/share/images/anduinos/logo.svg'"
+
+}
+
+sys_logo_asset_install_for_anduinos () {
 
 	if [ -e "/usr/share/images/anduinos/logo.svg" ]; then
 		return 0
