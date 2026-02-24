@@ -132,6 +132,14 @@ dconf write /org/gnome/shell/extensions/arcmenu/menu-button-icon "'/usr/share/im
 
 | Link | GitHub |
 | ---- | ------ |
+| [make-gnome-shell-layout-wincity](https://samwhelp.github.io/make-gnome-shell-layout-wincity/) | [GitHub](https://github.com/samwhelp/make-gnome-shell-layout-wincity) |
+| [make-gnome-shell-layout-maccity](https://samwhelp.github.io/make-gnome-shell-layout-maccity/) | [GitHub](https://github.com/samwhelp/make-gnome-shell-layout-maccity) |
+
+
+
+
+| Link | GitHub |
+| ---- | ------ |
 | [make-ubuntu-look-like-anduinos](https://samwhelp.github.io/make-ubuntu-look-like-anduinos/) | [GitHub](https://github.com/samwhelp/make-ubuntu-look-like-anduinos) |
 | [make-debian-look-like-anduinos](https://samwhelp.github.io/make-debian-look-like-anduinos/) | [GitHub](https://github.com/samwhelp/make-debian-look-like-anduinos) |
 | [make-fedora-look-like-anduinos](https://samwhelp.github.io/make-fedora-look-like-anduinos/) | [GitHub](https://github.com/samwhelp/make-fedora-look-like-anduinos) |
