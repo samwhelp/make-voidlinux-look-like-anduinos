@@ -92,9 +92,9 @@ Search: [fluent](https://github.com/vinceliuice?tab=repositories&q=fluent&type=&
 
 | Wallpaper | Soft Link |
 | --------- | --------- |
-| [/usr/share/backgrounds/Fluent-building-light.png](https://github.com/Anduin2017/AnduinOS/blob/1.5/src/mods/23-wallpaper-mod/Fluent-building-light.png) |  |
-| [/usr/share/backgrounds/Fluent-building-night.png](https://github.com/Anduin2017/AnduinOS/blob/1.5/src/mods/23-wallpaper-mod/Fluent-building-night.png) |  |
-| `/usr/share/backgrounds/next.png` | `/usr/share/backgrounds/Fluent-building-night.png` |
+| [/usr/share/backgrounds/Fluent-round-light.png](https://github.com/vinceliuice/Fluent-kde/blob/main/wallpaper/Fluent-round-light/contents/images/3840x2160.png) |  |
+| [/usr/share/backgrounds/Fluent-round-dark.png](https://github.com/vinceliuice/Fluent-kde/blob/main/wallpaper/Fluent-round-dark/contents/images/3840x2160.png) |  |
+| `/usr/share/backgrounds/next.png` | `/usr/share/backgrounds/Fluent-round-dark.png` |
 | `/usr/share/backgrounds/default.png` | `/usr/share/backgrounds/next.png` |
 | `/usr/share/backgrounds/default-login.png` | `/usr/share/backgrounds/next.png` |
 | `/usr/share/backgrounds/default-grub.png` | `/usr/share/backgrounds/next.png` |
@@ -106,7 +106,7 @@ Search: [fluent](https://github.com/vinceliuice?tab=repositories&q=fluent&type=&
 
 | Logo |
 | ---- |
-| [/usr/share/images/anduinos/logo.svg](https://github.com/Anduin2017/AnduinOS/blob/1.5/src/mods/30-gnome-extension-arcmenu-patch/logo.svg) |
+| [/usr/share/images/anduinos/logo.svg](https://github.com/Anduin2017/AnduinOS/blob/1.5/src/mods/34-gnome-extension-arcmenu-patch/logo.svg) |
 
 
 > This for ArcMenu Button Icon
