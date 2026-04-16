@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+flog#!/usr/bin/env bash
 
 
 
@@ -1111,9 +1111,9 @@ sys_logo_asset_install_for_anduinos () {
 
 
 	echo
-	echo sudo wget -c "https://raw.githubusercontent.com/Anduin2017/AnduinOS/47ef341b4ab9119905e3abcfd1949d718698ac14/src/mods/30-gnome-extension-arcmenu-patch/logo.svg" -O "/usr/share/images/anduinos/logo.svg"
+	echo sudo wget -c "https://raw.githubusercontent.com/Anduin2017/AnduinOS/refs/heads/1.5/src/mods/34-gnome-extension-arcmenu-patch/logo.svg" -O "/usr/share/images/anduinos/logo.svg"
 	echo
-	sudo wget -c "https://raw.githubusercontent.com/Anduin2017/AnduinOS/47ef341b4ab9119905e3abcfd1949d718698ac14/src/mods/30-gnome-extension-arcmenu-patch/logo.svg" -O "/usr/share/images/anduinos/logo.svg"
+	sudo wget -c "https://raw.githubusercontent.com/Anduin2017/AnduinOS/refs/heads/1.5/src/mods/34-gnome-extension-arcmenu-patch/logo.svg" -O "/usr/share/images/anduinos/logo.svg"
 
 
 }
